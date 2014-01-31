@@ -1,5 +1,10 @@
-var USERNAME = '',
-    PASSWORD = '';
+var keys = [ 'USERNAME', 'PASSWORD' ],
+    settings;
+
+chrome.storage.local.get(keys, function(item)
+{
+    settings = item;
+});
 
 window.addEventListener('keydown', function (event)
 {
@@ -20,8 +25,9 @@ function _logout()
 
 function _login()
 {
-    document.getElementById('username').value = USERNAME;
-    document.getElementById('password').value = PASSWORD;
+    console.log( settings );
+    document.getElementById('username').value = settings['USERNAME'];
+    document.getElementById('password').value = settings['PASSWORD'];
     document.querySelectorAll('#boxForm form')[0].submit();
 }
 
